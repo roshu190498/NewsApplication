@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    //Colors for Loader
+    <color name="mfp_loader_1">#E9BE23</color>
+    <color name="mfp_loader_2">#4CBAFB</color>
+    <color name="mfp_loader_3">#FC4C60</color>
+
+    <color name="charcoal">#424242</color>
+    <color name="dodgerBlue">#0F80FF</color>
 </resources>
