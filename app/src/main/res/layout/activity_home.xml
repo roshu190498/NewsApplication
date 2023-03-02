@@ -1,20 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".home.ui.HomeActivity">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+
+        <ViewFlipper
+            android:id="@+id/vwHomePage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <!-- News List-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvNewsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/charcoal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/item_news"
+                tools:itemCount="2"
+                />
+
+            <!-- Error-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clError"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivErrorIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_error"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvErrorMsg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/txt_an_error_occured"
+                    android:textColor="@color/charcoal"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivErrorIcon" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRetry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_retry"
+                    android:textColor="@color/dodgerBlue"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvErrorMsg" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        </ViewFlipper>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
