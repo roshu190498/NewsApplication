@@ -1,19 +1,31 @@
 package com.example.newsapplication.home.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.newsapplication.common.Status
 import com.example.newsapplication.databinding.ActivityHomeBinding
+import com.example.newsapplication.home.adapter.NewsListAdapter
+import com.example.newsapplication.home.model.Articles
 import com.example.newsapplication.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(),NewsListAdapter.NewsItemCalls{
+    @Inject
+    lateinit var progressDialog: Dialog
+
     lateinit var binding : ActivityHomeBinding
 
     private val homeViewModel : HomeViewModel by viewModels()
+
+    private val newsListAdapter by lazy {
+        NewsListAdapter()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,19 +38,34 @@ class HomeActivity : AppCompatActivity() {
         super.onStart()
         initobserver()
         initviews()
+        setClicks()
+    }
 
+    private fun setClicks() {
+        binding.tvRetry.setOnClickListener {
+            homeViewModel.getTopHeadLine()
+        }
     }
 
     private fun initobserver() {
         homeViewModel.topHeadlines.observe(this@HomeActivity) {
             when (it.status) {
                 Status.SUCCESS -> {
+                    progressDialog.dismiss()
+                    //set up adapter
+                    it.data?.articles?.let {
+                        newsListAdapter.setDataToNewsList(it,this)
+                    }
+                    binding.vwHomePage.displayedChild=0
                     Log.d("TAG_API", "data is :::: ${it.data}")
                 }
                 Status.ERROR -> {
+                    progressDialog.dismiss()
+                    binding.vwHomePage.displayedChild=1
                     Log.d("TAG_API", "Error")
                 }
                 Status.LOADING -> {
+                    progressDialog.show()
                     Log.d("TAG_API", "Loading")
                 }
             }
@@ -46,6 +73,19 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initviews() {
+        setupAdapter()
         homeViewModel.getTopHeadLine()
+    }
+
+    private fun setupAdapter() {
+        binding.rvNewsList.adapter=newsListAdapter
+    }
+
+    override fun addtoLocal(data: Articles) {
+
+    }
+
+    override fun redirectToUrl(url: String) {
+
     }
 }
