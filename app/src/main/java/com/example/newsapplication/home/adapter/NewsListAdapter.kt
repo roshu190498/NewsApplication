@@ -26,7 +26,7 @@ class NewsListAdapter : ListAdapter<Articles, NewsListAdapter.ViewHolder>(
         }
     }
 
-    fun setDataToNewsList(list:List<Articles>,callback:NewsItemCalls){
+    fun setDataToNewsList(list:List<Articles>,callback:NewsItemCalls?){
         this.submitList(list)
         this.callback=callback
     }
@@ -43,7 +43,7 @@ class NewsListAdapter : ListAdapter<Articles, NewsListAdapter.ViewHolder>(
         holder.bind(getItem(position))
     }
 
-    class ViewHolder(private val itemBinding: ItemNewsBinding) :
+    inner class ViewHolder(private val itemBinding: ItemNewsBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
             fun bind(article : Articles){
@@ -51,7 +51,7 @@ class NewsListAdapter : ListAdapter<Articles, NewsListAdapter.ViewHolder>(
                 itemBinding.tvNewsDesc.text = article.description
 
                 itemBinding.ivNewsImage.setOnClickListener {
-
+                    callback?.addtoLocal(article)
                 }
             }
     }

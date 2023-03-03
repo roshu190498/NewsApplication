@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.newsapplication.R
 import com.example.newsapplication.common.Status
 import com.example.newsapplication.common.openActivity
+import com.example.newsapplication.database.NewsRoomViewModel
 import com.example.newsapplication.databinding.ActivityHomeBinding
 import com.example.newsapplication.home.adapter.NewsListAdapter
 import com.example.newsapplication.home.model.Articles
@@ -27,6 +28,7 @@ class HomeActivity : AppCompatActivity(),NewsListAdapter.NewsItemCalls{
     lateinit var binding : ActivityHomeBinding
 
     private val homeViewModel : HomeViewModel by viewModels()
+    private val newsRoomViewModel : NewsRoomViewModel by viewModels()
 
     private val newsListAdapter by lazy {
         NewsListAdapter()
@@ -36,7 +38,6 @@ class HomeActivity : AppCompatActivity(),NewsListAdapter.NewsItemCalls{
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.tlToolbar)
     }
 
@@ -106,7 +107,7 @@ class HomeActivity : AppCompatActivity(),NewsListAdapter.NewsItemCalls{
     }
 
     override fun addtoLocal(data: Articles) {
-
+        newsRoomViewModel.insertNews(data)
     }
 
     override fun redirectToUrl(url: String) {

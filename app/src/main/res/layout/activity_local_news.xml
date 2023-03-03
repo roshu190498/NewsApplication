@@ -17,9 +17,9 @@
 
             <!-- News List-->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvNewsList"
+                android:id="@+id/rvLocalList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@color/charcoal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:itemCount="2"
@@ -47,23 +47,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="@string/txt_an_error_occured"
+                    android:text="@string/txt_no_saved_news"
                     android:textColor="@color/charcoal"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ivErrorIcon" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvRetry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_retry"
-                    android:textColor="@color/dodgerBlue"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvErrorMsg" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
