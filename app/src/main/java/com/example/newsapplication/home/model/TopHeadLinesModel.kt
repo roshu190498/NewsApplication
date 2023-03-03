@@ -1,5 +1,8 @@
 package com.example.newsapplication.home.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.example.newsapplication.database.DBConstants
 import com.google.gson.annotations.SerializedName
 
 data class TopHeadLinesModel (
@@ -12,9 +15,14 @@ data class TopHeadLinesModel (
 )
 
 
-
+@Entity(
+    tableName = DBConstants.TABLE_NEWS,
+)
 data class Articles (
-    @SerializedName("source"      ) var source      : Source? = null,
+    @PrimaryKey(autoGenerate = true)
+    var id : Int = 0,
+//    @TypeConverters(TypeSourceConverter::class)
+//    @SerializedName("source"      ) var source      : Source? = null,
     @SerializedName("author"      ) var author      : String? = null,
     @SerializedName("title"       ) var title       : String? = null,
     @SerializedName("description" ) var description : String? = null,
@@ -23,7 +31,6 @@ data class Articles (
     @SerializedName("publishedAt" ) var publishedAt : String? = null,
     @SerializedName("content"     ) var content     : String? = null
 )
-
 
 data class Source (
     @SerializedName("id"   ) var id   : String? = null,
