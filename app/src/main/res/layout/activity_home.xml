@@ -22,19 +22,17 @@
             android:id="@+id/vwHomePage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/tlToolbar"
-            >
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tlToolbar">
 
             <!-- News List-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvNewsList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/charcoal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/item_news"
                 tools:itemCount="2"
-                />
+                tools:listitem="@layout/item_news" />
 
             <!-- Error-->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -78,8 +76,6 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
         </ViewFlipper>

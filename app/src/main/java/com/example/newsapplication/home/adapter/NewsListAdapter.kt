@@ -35,7 +35,7 @@ class NewsListAdapter : ListAdapter<Articles, NewsListAdapter.ViewHolder>(
         val view = ItemNewsBinding.inflate(
             LayoutInflater.from(parent.context),parent,false
         )
-
+        view.root.layoutParams = ViewGroup.LayoutParams((parent.width * 0.8).toInt(),ViewGroup.LayoutParams.MATCH_PARENT)
         return ViewHolder(view)
     }
 

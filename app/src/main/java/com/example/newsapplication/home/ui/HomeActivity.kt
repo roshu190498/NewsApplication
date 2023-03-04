@@ -2,11 +2,12 @@ package com.example.newsapplication.home.ui
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapplication.R
 import com.example.newsapplication.common.Status
 import com.example.newsapplication.common.openActivity
@@ -80,18 +81,16 @@ class HomeActivity : AppCompatActivity(),NewsListAdapter.NewsItemCalls{
                     //set up adapter
                     it.data?.articles?.let {
                         newsListAdapter.setDataToNewsList(it,this)
+                        binding.rvNewsList.scrollToPosition(0)
                     }
                     binding.vwHomePage.displayedChild=0
-                    Log.d("TAG_API", "data is :::: ${it.data}")
                 }
                 Status.ERROR -> {
                     progressDialog.dismiss()
                     binding.vwHomePage.displayedChild=1
-                    Log.d("TAG_API", "Error")
                 }
                 Status.LOADING -> {
                     progressDialog.show()
-                    Log.d("TAG_API", "Loading")
                 }
             }
         }
@@ -103,6 +102,15 @@ class HomeActivity : AppCompatActivity(),NewsListAdapter.NewsItemCalls{
     }
 
     private fun setupAdapter() {
+        binding.rvNewsList.setLayoutManager(object : LinearLayoutManager(
+            this,
+            HORIZONTAL,
+            false
+        ) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                return true
+            }
+        })
         binding.rvNewsList.adapter=newsListAdapter
     }
 
