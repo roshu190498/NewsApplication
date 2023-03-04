@@ -1,5 +1,6 @@
 package com.example.newsapplication.home.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncDifferConfig
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapplication.R
+import com.example.newsapplication.common.DateUtil
 import com.example.newsapplication.common.loadImage
 import com.example.newsapplication.databinding.ItemNewsBinding
 import com.example.newsapplication.home.model.Articles
@@ -56,7 +58,13 @@ class NewsListAdapter : ListAdapter<Articles, NewsListAdapter.ViewHolder>(
                 itemBinding.tvNewsTittle.text = article.title
                 itemBinding.tvNewsDesc.text = article.description
                 itemBinding.ivNewsImage.loadImage(article.urlToImage)
-                itemBinding.tvTime.text = itemBinding.root.context.getString(R.string.txt_time,article.publishedAt)
+                val time = DateUtil.universalParseDate(
+                    article.publishedAt!!,
+                    DateUtil.PATTERN,
+                    DateUtil.dd_MMM_yyyy
+                )
+                Log.d("TAG_TIME","time is ${time}")
+                itemBinding.tvTime.text = itemBinding.root.context.getString(R.string.txt_time,time)
                 itemBinding.tgLocal.setOnClickListener {
                     callback?.addtoLocal(article)
                 }
