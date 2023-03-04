@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">NewsApplication</string>
+    <string name="app_name">OK-News</string>
 
     <string name="txt_an_error_occured">An error occurred</string>
     <string name="txt_no_saved_news">You don\'t have stored news</string>
     <string name="txt_retry">Retry</string>
     <string name="txt_local">Local</string>
+    <string name="txt_go_to_source">Go to source</string>
+
+    <string name="txt_time">Publish time : %s</string>
 </resources>
