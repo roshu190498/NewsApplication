@@ -32,6 +32,8 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:itemCount="2"
+                android:paddingTop="50dp"
+                android:paddingBottom="50dp"
                 tools:listitem="@layout/item_news" />
 
             <!-- Error-->
