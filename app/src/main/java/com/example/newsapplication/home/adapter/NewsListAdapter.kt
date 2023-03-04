@@ -52,19 +52,19 @@ class NewsListAdapter : ListAdapter<Articles, NewsListAdapter.ViewHolder>(
 
             fun bind(article : Articles){
                 val d = localList?.filter { it.title == article.title }
-
-                if (d != null) {
-                    itemBinding.tgLocal.isChecked=true
-                }
+                itemBinding.tgLocal.isChecked = d != null
                 itemBinding.tvNewsTittle.text = article.title
                 itemBinding.tvNewsDesc.text = article.description
                 itemBinding.ivNewsImage.loadImage(article.urlToImage)
                 itemBinding.tvTime.text = itemBinding.root.context.getString(R.string.txt_time,article.publishedAt)
-                itemBinding.ivNewsImage.setOnClickListener {
+                itemBinding.tgLocal.setOnClickListener {
                     callback?.addtoLocal(article)
                 }
                 itemBinding.tvRedirect.setOnClickListener {
                     callback?.redirectToUrl(article.url)
+                }
+                itemBinding.tgLocal.setOnCheckedChangeListener { buttonView, isChecked ->
+                    //do nothing
                 }
             }
     }

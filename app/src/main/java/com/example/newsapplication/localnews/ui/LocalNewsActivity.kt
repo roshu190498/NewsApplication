@@ -56,6 +56,10 @@ class LocalNewsActivity : AppCompatActivity(),NewsListAdapter.NewsItemCalls {
                 binding.vwHomePage.displayedChild=1
             }
         }
+
+        newsRoomViewModel.deleteRequest.observe(this){
+            callDb()
+        }
     }
 
     private fun callDb() {
@@ -63,7 +67,7 @@ class LocalNewsActivity : AppCompatActivity(),NewsListAdapter.NewsItemCalls {
     }
 
     override fun addtoLocal(data: Articles) {
-
+        newsRoomViewModel.deleteNews(data.title?:"")
     }
 
     override fun redirectToUrl(url: String?) {

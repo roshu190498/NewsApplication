@@ -29,4 +29,13 @@ class NewsRoomViewModel @Inject constructor(private val newsRoomRepository: News
         }
     }
 
+    val deleteRequest = MutableLiveData<Int>()
+    fun deleteNews(tittle:String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            newsRoomRepository.deleteNews(tittle,
+                { success -> deleteRequest.postValue(success)},
+                { error -> deleteRequest.postValue(error) })
+        }
+    }
+
 }

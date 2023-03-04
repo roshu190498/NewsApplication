@@ -26,4 +26,14 @@ class NewsRoomRepository @Inject constructor(
             fail.invoke("FAILURE")
         }
     }
+
+    fun deleteNews(titttle : String, success: (c: Int) -> Unit,fail: (error: Int) -> Unit){
+        try {
+            newsDao.deleteNews(titttle).let {
+                success.invoke(it)
+            }
+        }catch (e:Exception){
+            fail.invoke(-1)
+        }
+    }
 }

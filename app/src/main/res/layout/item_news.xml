@@ -47,7 +47,6 @@
                 android:background="@drawable/bg_radio_local"
                 android:button="@null"
                 android:checked="false"
-                android:src="@drawable/ic_add_to_local"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
